@@ -30,10 +30,20 @@ SELECT count(DISTINCT data_interval_start) AS periods FROM iss_observations;
 
 ## Облачное развёртывание и статус
 
-17.10.2026 созданы новая VM Yandex Cloud и managed PostgreSQL17 с БД analytics. Подключение analytics_pg добавлено через UI, TLS verify-full проверен. Первый реальный облачный scheduled run записал точку11:31:39UTC. Ожидается накопление минимум6разных получасовых периодов; до этого ДЗ не отправляется. Локально также проверены >5периодов, но они не подменяют облачные. Не сдавать как завершённое ДЗ до восстановления облака, развёртывания, накопления данных и двух настоящих скриншотов (UI успешных runs и SQL в облачной СУБД).
+17.10.2026 Airflow на VM Yandex Cloud записал в managed PostgreSQL 11 наблюдений за 11 разных получасовых периодов. Последнее наблюдение в экспорте: 16:30:05 UTC (18:30:05 Europe/Berlin). Результат подтверждён запросом в WebSQL облачной базы analytics и скриншотом cloud-periods-websql.png. Локальные данные в облачную таблицу не переносились.
 
-Порядок после восстановления: использовать учебную VM, развернуть Airflow; создать/использовать managed PostgreSQL analytics; настроить analytics_pg через UI; скопировать DAG в dags; проверить import errors; включить; дождаться шести периодов; сохранить снимки. Версия 2.10.5 выбрана из ветки Airflow 2.x для актуального локального quickstart, вместо устаревшего 2.0 из текста задания.
+```sql
+SELECT count(*) AS observations,
+       count(DISTINCT data_interval_start) AS periods,
+       max(observed_at) AS last_observation
+FROM public.iss_observations;
+```
 
+Результат: observations=11, periods=11, last_observation=2026-10-17 19:30:05+03. Экспорт WebSQL: cloud-observations.json. Скриншот cloud-periods-websql.png фиксирует более раннюю проверку 8 периодов.
+
+![Ранее подтверждённые восемь облачных периодов в WebSQL](cloud-periods-websql.png)
+
+Сдача в OTUS и остановка ресурсов пока не подтверждены. SSH с рабочего компьютера недоступен; это не помешало DAG собирать данные. После сохранения результатов требуется резервная копия PostgreSQL и остановка VM и managed PostgreSQL без удаления.
 [Официальный Docker quickstart Airflow 2.10.5](https://airflow.apache.org/docs/apache-airflow/2.10.5/howto/docker-compose/index.html).
 
 ## Проверенный локальный запуск 17.10.2026
