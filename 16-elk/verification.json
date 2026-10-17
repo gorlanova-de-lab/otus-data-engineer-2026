@@ -1,0 +1,28 @@
+{
+  "rejected": 218,
+  "first": "2017-11-07T23:59:19Z",
+  "statuses": [
+    {
+      "key": 200,
+      "doc_count": 11330
+    },
+    {
+      "key": 302,
+      "doc_count": 3498
+    },
+    {
+      "key": 304,
+      "doc_count": 658
+    },
+    {
+      "key": 404,
+      "doc_count": 251
+    },
+    {
+      "key": 206,
+      "doc_count": 52
+    }
+  ],
+  "valid": 15789,
+  "last": "2018-03-02T15:47:46Z"
+}
