@@ -1,0 +1,10 @@
+PASS query: Observed city-days rows: 1
+PASS query: Rainfall total (mm) rows: 1
+PASS query: Daily temperature midpoint (C) rows: 180
+PASS query: Rainfall by city (mm) rows: 2
+PASS query: Monthly weather summary rows: 8
+DASHBOARD http://metabase:3000/dashboard/2
+Saved reusable dashboard-spec.json without credentials
+2026-10-17 11:21:07,192 INFO validated city=Berlin rows=90
+2026-10-17 11:21:07,249 INFO validated city=Madrid rows=90
+2026-10-17 11:21:07,254 INFO SUCCESS run=22179d33-9d1a-42dc-aea2-477618127641 rows=180
