@@ -1,0 +1,24 @@
+name: otus22-airflow
+services:
+  airflow:
+    image: apache/airflow:2.10.5
+    command: standalone
+    environment:
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "false"
+      AIRFLOW__CORE__EXECUTOR: SequentialExecutor
+      AIRFLOW_CONN_ANALYTICS_PG: ${AIRFLOW_CONN_ANALYTICS_PG:?Set in private .env}
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - ./iss_pipeline.py:/opt/airflow/dags/iss_pipeline.py:ro
+      - airflowhome:/opt/airflow
+    networks:
+      - weather
+volumes:
+  airflowhome:
+networks:
+  weather:
+    external: true
+    name: otus-weather_default
+

@@ -1,0 +1,4 @@
+.env
+.airflow-password.txt
+logs/
+__pycache__/

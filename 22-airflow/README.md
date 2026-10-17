@@ -38,7 +38,10 @@ SELECT count(DISTINCT data_interval_start) AS periods FROM iss_observations;
 
 ## Проверенный локальный запуск 17.10.2026
 
-Для текущего стенда используется docker-compose.local.yml: один Airflow standalone на localhost:8080 и analytics в локальном PostgreSQL сети otus-weather_default. Connection URI хранится только в .env. DAG без import errors. Получены два реальных успешных запуска (scheduled и manual), в БД сохранены две точки МКС с разными observed_at. Это один получасовой data_interval и не заменяет требование >5 периодов в облаке. Скриншот локального Airflow будет приложен отдельно. Оба запуска обращались к настоящему API, данные не синтезировались.
+Для текущего стенда используется docker-compose.local.yml: один Airflow standalone на localhost:8080 и analytics в локальном PostgreSQL сети otus-weather_default. Connection URI хранится только в .env. DAG без import errors. Получены два реальных успешных запуска (scheduled и manual), в БД сохранены две точки МКС с разными observed_at. Это один получасовой data_interval и не заменяет требование >5 периодов в облаке. Скриншот локального Airflow — local-runs.png; фактический вывод БД и списка runs — local-verification.txt. Оба запуска обращались к настоящему API, данные не синтезировались.
 
 Файл iss_pipeline.py в корне — копия для публикации; для официального Compose скопировать его в dags/iss_pipeline.py. Для локального Compose нужен предварительно запущенный PostgreSQL и созданная analytics; этот стенд предназначен только для локальной проверки.
+
+
+![Локальные успешные запуски](local-runs.png)
 
