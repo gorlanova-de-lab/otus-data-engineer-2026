@@ -1,0 +1,57 @@
+26/10/17 06:50:42 INFO SparkContext: Running Spark version 3.5.7
+26/10/17 06:50:42 INFO SparkContext: OS info Linux, 6.18.54.1-microsoft-standard-WSL2, amd64
+26/10/17 06:50:42 INFO SparkContext: Java version 11.0.27
+26/10/17 06:50:42 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/10/17 06:50:42 INFO ResourceUtils: ==============================================================
+26/10/17 06:50:42 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/10/17 06:50:42 INFO ResourceUtils: ==============================================================
+26/10/17 06:50:42 INFO SparkContext: Submitted application: BostonCrimeMart
+26/10/17 06:50:42 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/10/17 06:50:42 INFO ResourceProfile: Limiting resource is cpu
+26/10/17 06:50:42 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/10/17 06:50:43 INFO SecurityManager: Changing view acls to: root
+26/10/17 06:50:43 INFO SecurityManager: Changing modify acls to: root
+26/10/17 06:50:43 INFO SecurityManager: Changing view acls groups to: 
+26/10/17 06:50:43 INFO SecurityManager: Changing modify acls groups to: 
+26/10/17 06:50:43 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: root; groups with view permissions: EMPTY; users with modify permissions: root; groups with modify permissions: EMPTY
+26/10/17 06:50:43 INFO Utils: Successfully started service 'sparkDriver' on port 45479.
+26/10/17 06:50:43 INFO SparkEnv: Registering MapOutputTracker
+26/10/17 06:50:44 INFO SparkEnv: Registering BlockManagerMaster
+26/10/17 06:50:44 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/10/17 06:50:44 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/10/17 06:50:44 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/10/17 06:50:44 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-6a2176e5-3a4b-409b-8305-106dcb0220e5
+26/10/17 06:50:44 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
+26/10/17 06:50:44 INFO SparkEnv: Registering OutputCommitCoordinator
+26/10/17 06:50:44 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+26/10/17 06:50:45 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/10/17 06:50:45 INFO Executor: Starting executor ID driver on host 058bf9bed40f
+26/10/17 06:50:45 INFO Executor: OS info Linux, 6.18.54.1-microsoft-standard-WSL2, amd64
+26/10/17 06:50:45 INFO Executor: Java version 11.0.27
+26/10/17 06:50:45 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+26/10/17 06:50:45 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@55558b1c for default.
+26/10/17 06:50:45 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 46007.
+26/10/17 06:50:45 INFO NettyBlockTransferService: Server created on 058bf9bed40f:46007
+26/10/17 06:50:45 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/10/17 06:50:45 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 058bf9bed40f, 46007, None)
+26/10/17 06:50:45 INFO BlockManagerMasterEndpoint: Registering block manager 058bf9bed40f:46007 with 434.4 MiB RAM, BlockManagerId(driver, 058bf9bed40f, 46007, None)
+26/10/17 06:50:45 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 058bf9bed40f, 46007, None)
+26/10/17 06:50:45 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 058bf9bed40f, 46007, None)
+QUALITY_METRICS {'input_rows': 319073, 'unique_rows': 319073, 'valid_rows': 317308, 'unmapped_codes_rows': 0}
++--------+------------+--------------+----------------------------------------------------------------+------------------+------------------+
+|district|crimes_total|crimes_monthly|frequent_crime_types                                            |lat               |lng               |
++--------+------------+--------------+----------------------------------------------------------------+------------------+------------------+
+|A1      |35717       |909.5         |PROPERTY, ASSAULT & BATTERY, DRUGS                              |42.35673394416979 |-71.06112996712572|
+|A15     |6505        |162.5         |M/V ACCIDENT, INVESTIGATE PERSON, M/V                           |42.37599933215879 |-71.06267564355909|
+|A7      |13544       |345.0         |SICK/INJURED/MEDICAL, DRUGS, INVESTIGATE PERSON                 |42.37735545951604 |-71.03083363200787|
+|B2      |49945       |1301.0        |M/V, M/V ACCIDENT, VERBAL DISPUTE                               |42.32162901059062 |-71.08479984973206|
+|B3      |35442       |913.0         |VERBAL DISPUTE, INVESTIGATE PERSON, M/V                         |42.28691276523    |-71.08518799423294|
+|C11     |42530       |1117.0        |M/V, SICK/INJURED/MEDICAL, INVESTIGATE PERSON                   |42.300052708546914|-71.06325855819793|
+|C6      |23460       |595.5         |DRUGS, SICK/INJURED/MEDICAL, M/V                                |42.333628045764954|-71.05203273306242|
+|D14     |20127       |510.5         |M/V, TOWED MOTOR VEHICLE, SICK/INJURED/MEDICAL                  |42.35030978352098 |-71.14226135353734|
+|D4      |41915       |1086.0        |LARCENY SHOPLIFTING, PROPERTY, LARCENY IN A BUILDING $200 & OVER|42.34350022705692 |-71.08090067663278|
+|E13     |17536       |446.5         |SICK/INJURED/MEDICAL, M/V, DRUGS                                |42.31502201870262 |-71.10645084032745|
+|E18     |17348       |437.5         |SICK/INJURED/MEDICAL, M/V, M/V ACCIDENT                         |42.262680611225804|-71.11891998757713|
+|E5      |13239       |337.5         |SICK/INJURED/MEDICAL, INVESTIGATE PERSON, M/V                   |42.28247306566422 |-71.14134995577218|
++--------+------------+--------------+----------------------------------------------------------------+------------------+------------------+
+
