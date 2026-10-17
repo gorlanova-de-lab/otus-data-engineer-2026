@@ -6,7 +6,7 @@
 | 9. Data Vault | [Модель кинотеатра](09-data-vault-cinema) | DDL 11 таблиц проверен, отправлено |
 | 16. ELK | [Исправленный парсинг и Kibana](16-elk) | 15789 корректных + 218 rejected, отправлено на повторную проверку |
 | 18. Kafka | [Один сервер KRaft](18-kafka) | Топик test, 3 сообщения записаны/прочитаны, отправлено |
-| 22. Airflow | [API МКС → analytics](22-airflow) | Облачный DAG и managed PostgreSQL работают; накапливаются6периодов, не сдано |
+| 22. Airflow | [API МКС → analytics](22-airflow) | WebSQL: 11 облачных периодов; отправлено в OTUS, backup готов, VM и managed PostgreSQL остановлены |
 | 27. Spark | [Витрина Boston Crimes](27-spark) | Полный датасет + тест PASS + Parquet, отправлено |
 | 32. BI | [Metabase, PostgreSQL, фильтр](32-bi) | Облачный Metabase проверен,5запросов и фильтрPASS; ожидается открытие сдачи |
 
