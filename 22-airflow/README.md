@@ -30,7 +30,7 @@ SELECT count(DISTINCT data_interval_start) AS periods FROM iss_observations;
 
 ## Облачное развёртывание и статус
 
-Пользователь сообщил, что Yandex Cloud временно недоступен. Обязательные критерии облачного Airflow, managed СУБД и >5 реальных периодов пока не выполнены. Не сдавать как завершённое ДЗ до восстановления облака, развёртывания, накопления данных и двух настоящих скриншотов (UI успешных runs и SQL в облачной СУБД).
+17.10.2026 созданы новая VM Yandex Cloud и managed PostgreSQL17 с БД analytics. Подключение analytics_pg добавлено через UI, TLS verify-full проверен. Первый реальный облачный scheduled run записал точку11:31:39UTC. Ожидается накопление минимум6разных получасовых периодов; до этого ДЗ не отправляется. Локально также проверены >5периодов, но они не подменяют облачные. Не сдавать как завершённое ДЗ до восстановления облака, развёртывания, накопления данных и двух настоящих скриншотов (UI успешных runs и SQL в облачной СУБД).
 
 Порядок после восстановления: использовать учебную VM, развернуть Airflow; создать/использовать managed PostgreSQL analytics; настроить analytics_pg через UI; скопировать DAG в dags; проверить import errors; включить; дождаться шести периодов; сохранить снимки. Версия 2.10.5 выбрана из ветки Airflow 2.x для актуального локального quickstart, вместо устаревшего 2.0 из текста задания.
 
@@ -45,3 +45,15 @@ SELECT count(DISTINCT data_interval_start) AS periods FROM iss_observations;
 
 ![Локальные успешные запуски](local-runs.png)
 
+
+## Повторная локальная проверка
+
+17.10.2026, последнее наблюдение 10:30:09 UTC: 9 строк за 8 разных получасовых периодов, failed DAG runs отсутствуют. Облачные запуски этим не подтверждаются. Для будущей VM добавлен docker-compose.cloud.yml: подключение analytics_pg нужно создать через UI, сертификат managed PostgreSQL монтируется из certs. SQL проверки — verify-cloud.sql. Конфигурация Compose проверена командой config --quiet без запуска ресурсов.
+
+## Созданный облачный стенд
+
+Ubuntu24.04,2vCPU8ГБRAM,HDD20ГБ,Airflow2.10.5 standalone в Docker; отдельный managed PostgreSQL17.11Yandex,1хостb2.medium,network-hdd10ГБ,БДanalytics. Метаданные самого Airflow — SQLite/SequentialExecutor, допустимые здесь только для учебного стенда. Данные МКС идут исключительно в managed PostgreSQL, не в контейнер BI.
+
+Использован docker-compose.cloud.yml. В UI Admin → Connections:analytics_pg,типPostgres,порт6432,databaseanalytics;Extra sslmode=verify-full и sslrootcert=/opt/airflow/certs/YandexInternalRootCA.crt. Пароли и ключи в репозиторий не входят. Веб-порт8080 слушает толькоloopbackVM,доступ черезSSH-туннель.
+
+По поручению пользователя после накопления данных, проверки и сохранения результатов оба облачных ресурса будут остановлены без удаления данных, для последующего обучения.

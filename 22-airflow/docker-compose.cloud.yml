@@ -1,0 +1,17 @@
+name: otus22-cloud
+services:
+  airflow:
+    image: apache/airflow:2.10.5
+    command: standalone
+    environment:
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
+      AIRFLOW__CORE__EXECUTOR: SequentialExecutor
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - airflowhome:/opt/airflow
+      - ./iss_pipeline.py:/opt/airflow/dags/iss_pipeline.py:ro
+      - ./certs:/opt/airflow/certs:ro
+volumes:
+  airflowhome:
