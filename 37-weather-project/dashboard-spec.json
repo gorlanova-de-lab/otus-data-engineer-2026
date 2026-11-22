@@ -1,0 +1,51 @@
+{
+  "dashboard_id": 2,
+  "database_name": "Weather warehouse",
+  "cards": [
+    {
+      "name": "Observed city-days",
+      "display": "scalar",
+      "sql": "SELECT count(*) AS city_days FROM mart.weather_daily WHERE TRUE [[AND city = {{city}}]]",
+      "visualization_settings": {}
+    },
+    {
+      "name": "Rainfall total (mm)",
+      "display": "scalar",
+      "sql": "SELECT sum(precipitation) AS rainfall_mm FROM mart.weather_daily WHERE TRUE [[AND city = {{city}}]]",
+      "visualization_settings": {}
+    },
+    {
+      "name": "Daily temperature midpoint (C)",
+      "display": "line",
+      "sql": "SELECT observed_date, city, temp_midpoint FROM mart.weather_daily WHERE TRUE [[AND city = {{city}}]] ORDER BY observed_date,city",
+      "visualization_settings": {
+        "graph.dimensions": [
+          "observed_date",
+          "city"
+        ],
+        "graph.metrics": [
+          "temp_midpoint"
+        ]
+      }
+    },
+    {
+      "name": "Rainfall by city (mm)",
+      "display": "bar",
+      "sql": "SELECT city,sum(precipitation) AS rainfall_mm FROM mart.weather_daily WHERE TRUE [[AND city = {{city}}]] GROUP BY city ORDER BY city",
+      "visualization_settings": {
+        "graph.dimensions": [
+          "city"
+        ],
+        "graph.metrics": [
+          "rainfall_mm"
+        ]
+      }
+    },
+    {
+      "name": "Monthly weather summary",
+      "display": "table",
+      "sql": "SELECT * FROM mart.weather_monthly WHERE TRUE [[AND city = {{city}}]] ORDER BY month,city",
+      "visualization_settings": {}
+    }
+  ]
+}

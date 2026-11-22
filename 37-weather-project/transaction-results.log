@@ -1,0 +1,1 @@
+PASS: invalid second-city response rolled back both raw and staging; failed audit retained. This is a test fixture, not real weather data.

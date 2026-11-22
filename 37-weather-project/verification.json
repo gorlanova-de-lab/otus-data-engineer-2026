@@ -1,0 +1,38 @@
+{
+  "checks": "PASS",
+  "staging_rows": 252,
+  "staging_unique_city_days": 252,
+  "history_start": "2026-07-13",
+  "history_end": "2026-11-15",
+  "mart_city_rows": [
+    [
+      "Berlin",
+      90,
+      "2026-08-18",
+      "2026-11-15",
+      "97.70"
+    ],
+    [
+      "Madrid",
+      90,
+      "2026-08-18",
+      "2026-11-15",
+      "129.10"
+    ]
+  ],
+  "monthly_rows": 8,
+  "last_two_successful_runs": [
+    [
+      "38cf6a58-42ba-43e2-bdaa-975b8c71612f",
+      "success",
+      180
+    ],
+    [
+      "8ed7d67c-d7d4-4133-a2fa-757c447ac910",
+      "success",
+      180
+    ]
+  ],
+  "raw_response_count": 4,
+  "expected_rollback_test_audits": 1
+}

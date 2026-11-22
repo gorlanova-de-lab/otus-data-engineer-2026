@@ -1,0 +1,7 @@
+PASS query: Observed city-days rows: 1
+PASS query: Rainfall total (mm) rows: 1
+PASS query: Daily temperature midpoint (C) rows: 180
+PASS query: Rainfall by city (mm) rows: 2
+PASS query: Monthly weather summary rows: 8
+DASHBOARD http://metabase:3000/dashboard/2
+Saved reusable dashboard-spec.json without credentials
