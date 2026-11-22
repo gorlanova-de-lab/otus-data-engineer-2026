@@ -3,10 +3,11 @@ import argparse
 from pyspark.sql import SparkSession, Window, functions as F
 
 
-def build_mart(spark, crime_path, codes_path, crime_encoding="ISO-8859-1"):
+def build_mart(spark, crime_path, codes_path, crime_encoding="ISO-8859-1", codes_encoding=None):
     raw = (spark.read.option("header", True).option("encoding", crime_encoding)
            .option("mode", "FAILFAST").csv(crime_path))
-    codes_raw = (spark.read.option("header", True).option("mode", "FAILFAST")
+    codes_raw = (spark.read.option("header", True)
+                 .option("encoding", codes_encoding or crime_encoding).option("mode", "FAILFAST")
                  .csv(codes_path))
     required = {"INCIDENT_NUMBER", "OFFENSE_CODE", "DISTRICT", "OCCURRED_ON_DATE", "Lat", "Long"}
     if not required.issubset(raw.columns):
@@ -14,7 +15,7 @@ def build_mart(spark, crime_path, codes_path, crime_encoding="ISO-8859-1"):
     if not {"CODE", "NAME"}.issubset(codes_raw.columns):
         raise ValueError("Offense dictionary must have CODE and NAME")
 
-    unique = raw.dropDuplicates().cache()
+    unique = raw.withColumn("OFFENSE_CODE", F.col("OFFENSE_CODE").cast("int")).dropDuplicates().cache()
     cleaned = (unique.select(
         F.trim("INCIDENT_NUMBER").alias("incident_number"),
         F.col("OFFENSE_CODE").cast("int").alias("code"),
@@ -60,6 +61,7 @@ def main():
     parser.add_argument("codes_path")
     parser.add_argument("output_path")
     parser.add_argument("--crime-encoding", default="ISO-8859-1")
+    parser.add_argument("--codes-encoding", default=None, help="Defaults to crime encoding")
     args = parser.parse_args()
     spark = (SparkSession.builder.appName("BostonCrimeMart")
              .config("spark.sql.session.timeZone", "UTC")
@@ -67,7 +69,7 @@ def main():
              .config("spark.sql.legacy.timeParserPolicy", "CORRECTED").getOrCreate())
     spark.sparkContext.setLogLevel("WARN")
     try:
-        mart, metrics = build_mart(spark, args.crime_path, args.codes_path, args.crime_encoding)
+        mart, metrics = build_mart(spark, args.crime_path, args.codes_path, args.crime_encoding, args.codes_encoding)
         print("QUALITY_METRICS", metrics)
         mart.show(truncate=False)
         mart.coalesce(1).write.mode("errorifexists").parquet(args.output_path)
