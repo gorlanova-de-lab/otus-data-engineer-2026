@@ -1,0 +1,37 @@
+2026/11/22 09:50:40 Setting 'xpack.monitoring.enabled' from environment.
+2026/11/22 09:50:40 Setting 'pipeline.workers' from environment.
+Using bundled JDK: /usr/share/logstash/jdk
+OpenJDK 64-Bit Server VM warning: Option UseConcMarkSweepGC was deprecated in version 9.0 and will likely be removed in a future release.
+/usr/share/logstash/vendor/bundle/jruby/2.5.0/gems/bundler-1.17.3/lib/bundler/rubygems_integration.rb:200: warning: constant Gem::ConfigMap is deprecated
+Sending Logstash logs to /usr/share/logstash/logs which is now configured via log4j2.properties
+[2026-11-22T09:51:43,641][INFO ][logstash.runner          ] Log4j configuration path used is: /usr/share/logstash/config/log4j2.properties
+[2026-11-22T09:51:43,659][INFO ][logstash.runner          ] Starting Logstash {"logstash.version"=>"7.14.1", "jruby.version"=>"jruby 9.2.19.0 (2.5.8) 2021-06-15 55810c552b OpenJDK 64-Bit Server VM 11.0.11+9 on 11.0.11+9 +indy +jit [linux-x86_64]"}
+[2026-11-22T09:51:44,555][WARN ][logstash.config.source.multilocal] Ignoring the 'pipelines.yml' file because modules or command line options are specified
+[2026-11-22T09:51:50,773][INFO ][logstash.agent           ] Successfully started Logstash API endpoint {:port=>9600}
+[2026-11-22T09:51:53,490][INFO ][org.reflections.Reflections] Reflections took 176 ms to scan 1 urls, producing 120 keys and 417 values 
+[2026-11-22T09:51:55,349][WARN ][deprecation.logstash.inputs.file] Relying on default value of `pipeline.ecs_compatibility`, which may change in a future major release of Logstash. To avoid unexpected changes when upgrading Logstash, please explicitly declare your desired ECS Compatibility mode.
+[2026-11-22T09:51:55,540][WARN ][deprecation.logstash.filters.csv] Relying on default value of `pipeline.ecs_compatibility`, which may change in a future major release of Logstash. To avoid unexpected changes when upgrading Logstash, please explicitly declare your desired ECS Compatibility mode.
+[2026-11-22T09:51:56,733][WARN ][deprecation.logstash.outputs.elasticsearch] Relying on default value of `pipeline.ecs_compatibility`, which may change in a future major release of Logstash. To avoid unexpected changes when upgrading Logstash, please explicitly declare your desired ECS Compatibility mode.
+[2026-11-22T09:51:56,809][WARN ][deprecation.logstash.outputs.elasticsearch] Relying on default value of `pipeline.ecs_compatibility`, which may change in a future major release of Logstash. To avoid unexpected changes when upgrading Logstash, please explicitly declare your desired ECS Compatibility mode.
+[2026-11-22T09:51:56,947][INFO ][logstash.outputs.elasticsearch][main] New Elasticsearch output {:class=>"LogStash::Outputs::ElasticSearch", :hosts=>["http://elasticsearch:9200"]}
+[2026-11-22T09:51:58,272][INFO ][logstash.outputs.elasticsearch][main] Elasticsearch pool URLs updated {:changes=>{:removed=>[], :added=>[http://elasticsearch:9200/]}}
+[2026-11-22T09:51:58,546][WARN ][logstash.outputs.elasticsearch][main] Restored connection to ES instance {:url=>"http://elasticsearch:9200/"}
+[2026-11-22T09:51:58,659][INFO ][logstash.outputs.elasticsearch][main] Elasticsearch version determined (7.14.1) {:es_version=>7}
+[2026-11-22T09:51:58,666][WARN ][logstash.outputs.elasticsearch][main] Detected a 6.x and above cluster: the `type` event field won't be used to determine the document _type {:es_version=>7}
+[2026-11-22T09:51:58,885][INFO ][logstash.outputs.elasticsearch][main] New Elasticsearch output {:class=>"LogStash::Outputs::ElasticSearch", :hosts=>["http://elasticsearch:9200"]}
+[2026-11-22T09:51:58,917][INFO ][logstash.outputs.elasticsearch][main] Elasticsearch pool URLs updated {:changes=>{:removed=>[], :added=>[http://elasticsearch:9200/]}}
+[2026-11-22T09:51:58,932][WARN ][logstash.outputs.elasticsearch][main] Restored connection to ES instance {:url=>"http://elasticsearch:9200/"}
+[2026-11-22T09:51:58,950][INFO ][logstash.outputs.elasticsearch][main] Elasticsearch version determined (7.14.1) {:es_version=>7}
+[2026-11-22T09:51:58,951][WARN ][logstash.outputs.elasticsearch][main] Detected a 6.x and above cluster: the `type` event field won't be used to determine the document _type {:es_version=>7}
+[2026-11-22T09:51:58,998][INFO ][logstash.outputs.elasticsearch][main] Using a default mapping template {:es_version=>7, :ecs_compatibility=>:disabled}
+[2026-11-22T09:51:59,075][INFO ][logstash.outputs.elasticsearch][main] Using a default mapping template {:es_version=>7, :ecs_compatibility=>:disabled}
+[2026-11-22T09:51:59,099][WARN ][deprecation.logstash.filters.grok][main] Relying on default value of `pipeline.ecs_compatibility`, which may change in a future major release of Logstash. To avoid unexpected changes when upgrading Logstash, please explicitly declare your desired ECS Compatibility mode.
+[2026-11-22T09:51:59,757][WARN ][logstash.javapipeline    ][main] 'pipeline.ordered' is enabled and is likely less efficient, consider disabling if preserving event order is not necessary
+[2026-11-22T09:51:59,921][INFO ][logstash.javapipeline    ][main] Starting pipeline {:pipeline_id=>"main", "pipeline.workers"=>1, "pipeline.batch.size"=>125, "pipeline.batch.delay"=>50, "pipeline.max_inflight"=>125, "pipeline.sources"=>["/usr/share/logstash/pipeline/clickstream.conf"], :thread=>"#<Thread:0xf64a1b5 run>"}
+[2026-11-22T09:52:02,122][INFO ][logstash.javapipeline    ][main] Pipeline Java execution initialization time {"seconds"=>2.19}
+[2026-11-22T09:52:02,285][INFO ][logstash.javapipeline    ][main] Pipeline started {"pipeline.id"=>"main"}
+[2026-11-22T09:52:02,395][INFO ][filewatch.observingread  ][main][9cf01ef667aeeeb57e57955ca2677ce0db23a6657b420af448dd4f582b31746f] START, creating Discoverer, Watch with file and sincedb collections
+[2026-11-22T09:52:02,407][INFO ][logstash.agent           ] Pipelines running {:count=>1, :running_pipelines=>[:main], :non_running_pipelines=>[]}
+[2026-11-22T09:54:07,463][INFO ][logstash.javapipeline    ][main] Pipeline terminated {"pipeline.id"=>"main"}
+[2026-11-22T09:54:07,578][INFO ][logstash.pipelinesregistry] Removed pipeline from registry successfully {:pipeline_id=>:main}
+[2026-11-22T09:54:07,683][INFO ][logstash.runner          ] Logstash shut down.

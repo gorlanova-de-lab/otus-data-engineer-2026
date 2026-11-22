@@ -1,0 +1,847 @@
+{
+  "checked_at": "2026-11-22",
+  "checks": "PASS: source rows accounted for; raw timestamp preserved; event and ingestion times separated; every daily index matches event date",
+  "valid": 15789,
+  "rejected": 218,
+  "total": 16007,
+  "query": {
+    "size": 1,
+    "track_total_hits": true,
+    "sort": [
+      {
+        "parsed_timestamp": "asc"
+      }
+    ],
+    "aggs": {
+      "event_min": {
+        "min": {
+          "field": "parsed_timestamp"
+        }
+      },
+      "event_max": {
+        "max": {
+          "field": "parsed_timestamp"
+        }
+      },
+      "ingest_min": {
+        "min": {
+          "field": "@timestamp"
+        }
+      },
+      "ingest_max": {
+        "max": {
+          "field": "@timestamp"
+        }
+      },
+      "statuses": {
+        "terms": {
+          "field": "status_code",
+          "size": 10
+        }
+      },
+      "missing_event": {
+        "missing": {
+          "field": "parsed_timestamp"
+        }
+      },
+      "indexes": {
+        "terms": {
+          "field": "_index",
+          "size": 200
+        },
+        "aggs": {
+          "first": {
+            "min": {
+              "field": "parsed_timestamp"
+            }
+          },
+          "last": {
+            "max": {
+              "field": "parsed_timestamp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "response": {
+    "took": 68,
+    "timed_out": false,
+    "_shards": {
+      "total": 57,
+      "successful": 57,
+      "skipped": 0,
+      "failed": 0
+    },
+    "hits": {
+      "total": {
+        "value": 15789,
+        "relation": "eq"
+      },
+      "max_score": null,
+      "hits": [
+        {
+          "_index": "weblogs-v3-2017.11.07",
+          "_type": "_doc",
+          "_id": "1GisAqIBchR-SiQSBDZH",
+          "_score": null,
+          "_source": {
+            "message": "10.130.2.1,[07/Nov/2017:23:59:19,GET / HTTP/1.1,200\r",
+            "client_ip": "10.130.2.1",
+            "@version": "1",
+            "request": "GET / HTTP/1.1",
+            "url": "/",
+            "timestamp": "[07/Nov/2017:23:59:19",
+            "status_code": 200,
+            "@timestamp": "2026-11-22T09:52:34.070Z",
+            "method": "GET",
+            "http_version": "1.1",
+            "parsed_timestamp": "2017-11-07T23:59:19.000Z",
+            "path": "/app/weblog.csv",
+            "host": "39c20a10ee2c"
+          },
+          "sort": [
+            1510099159000
+          ]
+        }
+      ]
+    },
+    "aggregations": {
+      "indexes": {
+        "doc_count_error_upper_bound": 0,
+        "sum_other_doc_count": 0,
+        "buckets": [
+          {
+            "key": "weblogs-v3-2018.01.29",
+            "doc_count": 5092,
+            "last": {
+              "value": 1517259406000.0,
+              "value_as_string": "2018-01-29T20:56:46.000Z"
+            },
+            "first": {
+              "value": 1517257069000.0,
+              "value_as_string": "2018-01-29T20:17:49.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.11.30",
+            "doc_count": 2991,
+            "last": {
+              "value": 1512078502000.0,
+              "value_as_string": "2017-11-30T21:48:22.000Z"
+            },
+            "first": {
+              "value": 1512012123000.0,
+              "value_as_string": "2017-11-30T03:22:03.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.11.29",
+            "doc_count": 580,
+            "last": {
+              "value": 1511994078000.0,
+              "value_as_string": "2017-11-29T22:21:18.000Z"
+            },
+            "first": {
+              "value": 1511938735000.0,
+              "value_as_string": "2017-11-29T06:58:55.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.11.17",
+            "doc_count": 481,
+            "last": {
+              "value": 1510963151000.0,
+              "value_as_string": "2017-11-17T23:59:11.000Z"
+            },
+            "first": {
+              "value": 1510888145000.0,
+              "value_as_string": "2017-11-17T03:09:05.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.12.01",
+            "doc_count": 468,
+            "last": {
+              "value": 1512169396000.0,
+              "value_as_string": "2017-12-01T23:03:16.000Z"
+            },
+            "first": {
+              "value": 1512086762000.0,
+              "value_as_string": "2017-12-01T00:06:02.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.11.16",
+            "doc_count": 384,
+            "last": {
+              "value": 1510876616000.0,
+              "value_as_string": "2017-11-16T23:56:56.000Z"
+            },
+            "first": {
+              "value": 1510791620000.0,
+              "value_as_string": "2017-11-16T00:20:20.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.11.23",
+            "doc_count": 380,
+            "last": {
+              "value": 1511476266000.0,
+              "value_as_string": "2017-11-23T22:31:06.000Z"
+            },
+            "first": {
+              "value": 1511397892000.0,
+              "value_as_string": "2017-11-23T00:44:52.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.11.12",
+            "doc_count": 338,
+            "last": {
+              "value": 1510526701000.0,
+              "value_as_string": "2017-11-12T22:45:01.000Z"
+            },
+            "first": {
+              "value": 1510445073000.0,
+              "value_as_string": "2017-11-12T00:04:33.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.11.11",
+            "doc_count": 286,
+            "last": {
+              "value": 1510437055000.0,
+              "value_as_string": "2017-11-11T21:50:55.000Z"
+            },
+            "first": {
+              "value": 1510390189000.0,
+              "value_as_string": "2017-11-11T08:49:49.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.11.25",
+            "doc_count": 250,
+            "last": {
+              "value": 1511646533000.0,
+              "value_as_string": "2017-11-25T21:48:53.000Z"
+            },
+            "first": {
+              "value": 1511584329000.0,
+              "value_as_string": "2017-11-25T04:32:09.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.11.09",
+            "doc_count": 236,
+            "last": {
+              "value": 1510271836000.0,
+              "value_as_string": "2017-11-09T23:57:16.000Z"
+            },
+            "first": {
+              "value": 1510186958000.0,
+              "value_as_string": "2017-11-09T00:22:38.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2018.02.22",
+            "doc_count": 231,
+            "last": {
+              "value": 1519343786000.0,
+              "value_as_string": "2018-02-22T23:56:26.000Z"
+            },
+            "first": {
+              "value": 1519280716000.0,
+              "value_as_string": "2018-02-22T06:25:16.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.11.13",
+            "doc_count": 230,
+            "last": {
+              "value": 1510616627000.0,
+              "value_as_string": "2017-11-13T23:43:47.000Z"
+            },
+            "first": {
+              "value": 1510532925000.0,
+              "value_as_string": "2017-11-13T00:28:45.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.11.26",
+            "doc_count": 179,
+            "last": {
+              "value": 1511734726000.0,
+              "value_as_string": "2017-11-26T22:18:46.000Z"
+            },
+            "first": {
+              "value": 1511674272000.0,
+              "value_as_string": "2017-11-26T05:31:12.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.12.18",
+            "doc_count": 178,
+            "last": {
+              "value": 1513632469000.0,
+              "value_as_string": "2017-12-18T21:27:49.000Z"
+            },
+            "first": {
+              "value": 1513571948000.0,
+              "value_as_string": "2017-12-18T04:39:08.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.12.02",
+            "doc_count": 168,
+            "last": {
+              "value": 1512254180000.0,
+              "value_as_string": "2017-12-02T22:36:20.000Z"
+            },
+            "first": {
+              "value": 1512181553000.0,
+              "value_as_string": "2017-12-02T02:25:53.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.12.14",
+            "doc_count": 165,
+            "last": {
+              "value": 1513295583000.0,
+              "value_as_string": "2017-12-14T23:53:03.000Z"
+            },
+            "first": {
+              "value": 1513209623000.0,
+              "value_as_string": "2017-12-14T00:00:23.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.11.19",
+            "doc_count": 164,
+            "last": {
+              "value": 1511135143000.0,
+              "value_as_string": "2017-11-19T23:45:43.000Z"
+            },
+            "first": {
+              "value": 1511068153000.0,
+              "value_as_string": "2017-11-19T05:09:13.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.12.16",
+            "doc_count": 155,
+            "last": {
+              "value": 1513465466000.0,
+              "value_as_string": "2017-12-16T23:04:26.000Z"
+            },
+            "first": {
+              "value": 1513385321000.0,
+              "value_as_string": "2017-12-16T00:48:41.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.11.14",
+            "doc_count": 150,
+            "last": {
+              "value": 1510702734000.0,
+              "value_as_string": "2017-11-14T23:38:54.000Z"
+            },
+            "first": {
+              "value": 1510620711000.0,
+              "value_as_string": "2017-11-14T00:51:51.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2018.03.02",
+            "doc_count": 143,
+            "last": {
+              "value": 1520005666000.0,
+              "value_as_string": "2018-03-02T15:47:46.000Z"
+            },
+            "first": {
+              "value": 1519965046000.0,
+              "value_as_string": "2018-03-02T04:30:46.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2018.02.25",
+            "doc_count": 139,
+            "last": {
+              "value": 1519579522000.0,
+              "value_as_string": "2018-02-25T17:25:22.000Z"
+            },
+            "first": {
+              "value": 1519527862000.0,
+              "value_as_string": "2018-02-25T03:04:22.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.12.13",
+            "doc_count": 133,
+            "last": {
+              "value": 1513199149000.0,
+              "value_as_string": "2017-12-13T21:05:49.000Z"
+            },
+            "first": {
+              "value": 1513124796000.0,
+              "value_as_string": "2017-12-13T00:26:36.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2018.02.23",
+            "doc_count": 127,
+            "last": {
+              "value": 1519429760000.0,
+              "value_as_string": "2018-02-23T23:49:20.000Z"
+            },
+            "first": {
+              "value": 1519358672000.0,
+              "value_as_string": "2018-02-23T04:04:32.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2018.02.28",
+            "doc_count": 123,
+            "last": {
+              "value": 1519853050000.0,
+              "value_as_string": "2018-02-28T21:24:10.000Z"
+            },
+            "first": {
+              "value": 1519786943000.0,
+              "value_as_string": "2018-02-28T03:02:23.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2018.02.21",
+            "doc_count": 110,
+            "last": {
+              "value": 1519243738000.0,
+              "value_as_string": "2018-02-21T20:08:58.000Z"
+            },
+            "first": {
+              "value": 1519188404000.0,
+              "value_as_string": "2018-02-21T04:46:44.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.11.08",
+            "doc_count": 106,
+            "last": {
+              "value": 1510182734000.0,
+              "value_as_string": "2017-11-08T23:12:14.000Z"
+            },
+            "first": {
+              "value": 1510101547000.0,
+              "value_as_string": "2017-11-08T00:39:07.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.12.03",
+            "doc_count": 105,
+            "last": {
+              "value": 1512328386000.0,
+              "value_as_string": "2017-12-03T19:13:06.000Z"
+            },
+            "first": {
+              "value": 1512268097000.0,
+              "value_as_string": "2017-12-03T02:28:17.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.12.15",
+            "doc_count": 100,
+            "last": {
+              "value": 1513376609000.0,
+              "value_as_string": "2017-12-15T22:23:29.000Z"
+            },
+            "first": {
+              "value": 1513302041000.0,
+              "value_as_string": "2017-12-15T01:40:41.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.12.20",
+            "doc_count": 98,
+            "last": {
+              "value": 1513795535000.0,
+              "value_as_string": "2017-12-20T18:45:35.000Z"
+            },
+            "first": {
+              "value": 1513733796000.0,
+              "value_as_string": "2017-12-20T01:36:36.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2018.02.26",
+            "doc_count": 98,
+            "last": {
+              "value": 1519673054000.0,
+              "value_as_string": "2018-02-26T19:24:14.000Z"
+            },
+            "first": {
+              "value": 1519605889000.0,
+              "value_as_string": "2018-02-26T00:44:49.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.11.18",
+            "doc_count": 96,
+            "last": {
+              "value": 1511042134000.0,
+              "value_as_string": "2017-11-18T21:55:34.000Z"
+            },
+            "first": {
+              "value": 1510968853000.0,
+              "value_as_string": "2017-11-18T01:34:13.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.11.24",
+            "doc_count": 94,
+            "last": {
+              "value": 1511544587000.0,
+              "value_as_string": "2017-11-24T17:29:47.000Z"
+            },
+            "first": {
+              "value": 1511490974000.0,
+              "value_as_string": "2017-11-24T02:36:14.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.12.17",
+            "doc_count": 92,
+            "last": {
+              "value": 1513542820000.0,
+              "value_as_string": "2017-12-17T20:33:40.000Z"
+            },
+            "first": {
+              "value": 1513470718000.0,
+              "value_as_string": "2017-12-17T00:31:58.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.12.12",
+            "doc_count": 86,
+            "last": {
+              "value": 1513123083000.0,
+              "value_as_string": "2017-12-12T23:58:03.000Z"
+            },
+            "first": {
+              "value": 1513065101000.0,
+              "value_as_string": "2017-12-12T07:51:41.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2018.02.27",
+            "doc_count": 83,
+            "last": {
+              "value": 1519769342000.0,
+              "value_as_string": "2018-02-27T22:09:02.000Z"
+            },
+            "first": {
+              "value": 1519692338000.0,
+              "value_as_string": "2018-02-27T00:45:38.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.11.15",
+            "doc_count": 78,
+            "last": {
+              "value": 1510790325000.0,
+              "value_as_string": "2017-11-15T23:58:45.000Z"
+            },
+            "first": {
+              "value": 1510706363000.0,
+              "value_as_string": "2017-11-15T00:39:23.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2018.01.16",
+            "doc_count": 76,
+            "last": {
+              "value": 1516099903000.0,
+              "value_as_string": "2018-01-16T10:51:43.000Z"
+            },
+            "first": {
+              "value": 1516082450000.0,
+              "value_as_string": "2018-01-16T06:00:50.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.12.21",
+            "doc_count": 72,
+            "last": {
+              "value": 1513895175000.0,
+              "value_as_string": "2017-12-21T22:26:15.000Z"
+            },
+            "first": {
+              "value": 1513871060000.0,
+              "value_as_string": "2017-12-21T15:44:20.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2018.02.17",
+            "doc_count": 65,
+            "last": {
+              "value": 1518898828000.0,
+              "value_as_string": "2018-02-17T20:20:28.000Z"
+            },
+            "first": {
+              "value": 1518850001000.0,
+              "value_as_string": "2018-02-17T06:46:41.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.11.10",
+            "doc_count": 64,
+            "last": {
+              "value": 1510345638000.0,
+              "value_as_string": "2017-11-10T20:27:18.000Z"
+            },
+            "first": {
+              "value": 1510275846000.0,
+              "value_as_string": "2017-11-10T01:04:06.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2018.01.18",
+            "doc_count": 63,
+            "last": {
+              "value": 1516294785000.0,
+              "value_as_string": "2018-01-18T16:59:45.000Z"
+            },
+            "first": {
+              "value": 1516279595000.0,
+              "value_as_string": "2018-01-18T12:46:35.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2018.02.20",
+            "doc_count": 62,
+            "last": {
+              "value": 1519142994000.0,
+              "value_as_string": "2018-02-20T16:09:54.000Z"
+            },
+            "first": {
+              "value": 1519091335000.0,
+              "value_as_string": "2018-02-20T01:48:55.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.11.22",
+            "doc_count": 60,
+            "last": {
+              "value": 1511393222000.0,
+              "value_as_string": "2017-11-22T23:27:02.000Z"
+            },
+            "first": {
+              "value": 1511310761000.0,
+              "value_as_string": "2017-11-22T00:32:41.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.11.20",
+            "doc_count": 58,
+            "last": {
+              "value": 1511183962000.0,
+              "value_as_string": "2017-11-20T13:19:22.000Z"
+            },
+            "first": {
+              "value": 1511139087000.0,
+              "value_as_string": "2017-11-20T00:51:27.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.12.19",
+            "doc_count": 55,
+            "last": {
+              "value": 1513725384000.0,
+              "value_as_string": "2017-12-19T23:16:24.000Z"
+            },
+            "first": {
+              "value": 1513682784000.0,
+              "value_as_string": "2017-12-19T11:26:24.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.11.21",
+            "doc_count": 47,
+            "last": {
+              "value": 1511294875000.0,
+              "value_as_string": "2017-11-21T20:07:55.000Z"
+            },
+            "first": {
+              "value": 1511252240000.0,
+              "value_as_string": "2017-11-21T08:17:20.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.12.23",
+            "doc_count": 43,
+            "last": {
+              "value": 1514016973000.0,
+              "value_as_string": "2017-12-23T08:16:13.000Z"
+            },
+            "first": {
+              "value": 1514000841000.0,
+              "value_as_string": "2017-12-23T03:47:21.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2018.02.18",
+            "doc_count": 34,
+            "last": {
+              "value": 1518983281000.0,
+              "value_as_string": "2018-02-18T19:48:01.000Z"
+            },
+            "first": {
+              "value": 1518969977000.0,
+              "value_as_string": "2018-02-18T16:06:17.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2018.02.16",
+            "doc_count": 33,
+            "last": {
+              "value": 1518808362000.0,
+              "value_as_string": "2018-02-16T19:12:42.000Z"
+            },
+            "first": {
+              "value": 1518756435000.0,
+              "value_as_string": "2018-02-16T04:47:15.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2018.02.19",
+            "doc_count": 32,
+            "last": {
+              "value": 1519083683000.0,
+              "value_as_string": "2018-02-19T23:41:23.000Z"
+            },
+            "first": {
+              "value": 1519044653000.0,
+              "value_as_string": "2018-02-19T12:50:53.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2018.03.01",
+            "doc_count": 31,
+            "last": {
+              "value": 1519911598000.0,
+              "value_as_string": "2018-03-01T13:39:58.000Z"
+            },
+            "first": {
+              "value": 1519864678000.0,
+              "value_as_string": "2018-03-01T00:37:58.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2018.01.17",
+            "doc_count": 29,
+            "last": {
+              "value": 1516220366000.0,
+              "value_as_string": "2018-01-17T20:19:26.000Z"
+            },
+            "first": {
+              "value": 1516147614000.0,
+              "value_as_string": "2018-01-17T00:06:54.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2018.02.15",
+            "doc_count": 20,
+            "last": {
+              "value": 1518733199000.0,
+              "value_as_string": "2018-02-15T22:19:59.000Z"
+            },
+            "first": {
+              "value": 1518664238000.0,
+              "value_as_string": "2018-02-15T03:10:38.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2018.02.24",
+            "doc_count": 15,
+            "last": {
+              "value": 1519490268000.0,
+              "value_as_string": "2018-02-24T16:37:48.000Z"
+            },
+            "first": {
+              "value": 1519430620000.0,
+              "value_as_string": "2018-02-24T00:03:40.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.12.22",
+            "doc_count": 11,
+            "last": {
+              "value": 1513969166000.0,
+              "value_as_string": "2017-12-22T18:59:26.000Z"
+            },
+            "first": {
+              "value": 1513969163000.0,
+              "value_as_string": "2017-12-22T18:59:23.000Z"
+            }
+          },
+          {
+            "key": "weblogs-v3-2017.11.07",
+            "doc_count": 2,
+            "last": {
+              "value": 1510099159000.0,
+              "value_as_string": "2017-11-07T23:59:19.000Z"
+            },
+            "first": {
+              "value": 1510099159000.0,
+              "value_as_string": "2017-11-07T23:59:19.000Z"
+            }
+          }
+        ]
+      },
+      "ingest_min": {
+        "value": 1795341122942.0,
+        "value_as_string": "2026-11-22T09:52:02.942Z"
+      },
+      "missing_event": {
+        "doc_count": 0
+      },
+      "statuses": {
+        "doc_count_error_upper_bound": 0,
+        "sum_other_doc_count": 0,
+        "buckets": [
+          {
+            "key": 200,
+            "doc_count": 11330
+          },
+          {
+            "key": 302,
+            "doc_count": 3498
+          },
+          {
+            "key": 304,
+            "doc_count": 658
+          },
+          {
+            "key": 404,
+            "doc_count": 251
+          },
+          {
+            "key": 206,
+            "doc_count": 52
+          }
+        ]
+      },
+      "event_min": {
+        "value": 1510099159000.0,
+        "value_as_string": "2017-11-07T23:59:19.000Z"
+      },
+      "ingest_max": {
+        "value": 1795341245548.0,
+        "value_as_string": "2026-11-22T09:54:05.548Z"
+      },
+      "event_max": {
+        "value": 1520005666000.0,
+        "value_as_string": "2018-03-02T15:47:46.000Z"
+      }
+    }
+  }
+}
